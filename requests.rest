@@ -1,0 +1,13 @@
+ ### Authenticate
+POST https://node-json-api.onrender.com/login
+Content-Type: application/json
+
+{
+  "username": "navy",
+  "password": "123"
+}
+
+### Get Products (use token from above response)
+GET https://node-json-api.onrender.com/products
+Authorization: Bearer YOUR_TOKEN_HERE
+
