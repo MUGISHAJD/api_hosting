@@ -1,4 +1,10 @@
 {
+  "name": "api_hosting",
+  "version": "1.0.0",
+  "main": "product.js",
+  "scripts": {
+    "start": "node product.js"
+  },
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "dotenv": "^16.5.0",
