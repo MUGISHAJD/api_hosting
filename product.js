@@ -11,32 +11,38 @@ const fs = require('fs');
 
 app.use(express.json());
 
-// database connection
-const mysql = require('mysql2');
 
-const connection = mysql.createConnection({
-  host: 'gateway01.us-west-2.prod.aws.tidbcloud.com',
-  user: '3bXgF4qMFWb4xkV.root',
-  password: 'ygHtKNvumAub4NHq',
-  database: 'test', // default DB name or your custom one
-  port: 4000,
-  ssl: {
-    rejectUnauthorized: true,
-    ca: fs.readFileSync('./isrgrootx1.pem') // Optional: downloaded from TiDB Cloud
+// Create a reusable function to get a database connection
+async function getDBConnection() {
+  return await mysql.createConnection({
+    host: 'gateway01.us-west-2.prod.aws.tidbcloud.com',
+    user: '3bXgF4qMFWb4xkV.root',
+    password: 'ygHtKNvumAub4NHq',
+    database: 'test', // default DB name or your custom one
+    port: 4000,
+    ssl: {
+      rejectUnauthorized: true,
+      ca: fs.readFileSync('C:/xampp/htdocs/API/isrgrootx1.pem') // Optional: downloaded from TiDB Cloud
+    }
+  });
+}
+
+// Example usage of the reusable function
+(async () => {
+  try {
+    const connection = await getDBConnection();
+    console.log('Connected to MySQL database!');
+
+    // Example query
+    const [results] = await connection.query("SELECT * FROM users LIMIT 10");
+    console.log(results);
+
+    // Close the connection when done
+    await connection.end();
+  } catch (err) {
+    console.error('Connection error:', err);
   }
-});
-
-connection.connect((err) => {
-  if (err) throw err;
-  console.log("Connected to TiDB Serverless!");
-});
-
-// run sql queries
-connection.query("SELECT * FROM your_table", (err, results) => {
-  if (err) throw err;
-  console.log(results);
-});
-
+})();
 
 // ---------------------------
 // JWT Middleware
