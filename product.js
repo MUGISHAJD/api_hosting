@@ -15,10 +15,10 @@ app.use(express.json());
 // Create a reusable function to get a database connection
 async function getDBConnection() {
   return await mysql.createConnection({
-    host: 'gateway01.us-west-2.prod.aws.tidbcloud.com',
-    user: '3bXgF4qMFWb4xkV.root',
-    password: 'ygHtKNvumAub4NHq',
-    database: 'test', // default DB name or your custom one
+    host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME, // default DB name or your custom one
     port: 4000,
     ssl: {
       rejectUnauthorized: true,
