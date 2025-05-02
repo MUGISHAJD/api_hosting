@@ -22,7 +22,7 @@ async function getDBConnection() {
     port: 4000,
     ssl: {
       rejectUnauthorized: true,
-      ca: fs.readFileSync('C:/xampp/htdocs/API/isrgrootx1.pem') // Optional: downloaded from TiDB Cloud
+      ca: fs.readFileSync('./certs/isrgrootx1.pem') // Optional: downloaded from TiDB Cloud
     }
   });
 }
@@ -128,7 +128,7 @@ app.post("/login", async (req, res) => {
 // ---------------------------
 // Protected Product APIs
 // ---------------------------
-//app.use("/products", authenticateToken);
+app.use("/products", authenticateToken);
 // ---------------------------
 // GET All Products
 // ---------------------------
