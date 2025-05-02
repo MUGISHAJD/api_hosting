@@ -62,17 +62,6 @@ function authenticateToken(req, res, next) {
   });
 }
 
-//-------------
-// Root route
-//-------------
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
-
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
-});
 
 // ---------------------------
 // User Signup
@@ -139,7 +128,7 @@ app.post("/login", async (req, res) => {
 // ---------------------------
 // Protected Product APIs
 // ---------------------------
-app.use("/products", authenticateToken);
+//app.use("/products", authenticateToken);
 // ---------------------------
 // GET All Products
 // ---------------------------
