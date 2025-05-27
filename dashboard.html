@@ -28,7 +28,7 @@
     }
 
     .logout-btn {
-      background-color: #e74c3c;
+      background-color: rgb(58, 1, 1);
       color: white;
       padding: 10px 15px;
       border: none;
@@ -71,7 +71,7 @@
     }
 
     .form-container button {
-      background-color: #007bff;
+      background-color: rgb(58, 1, 1);
       color: white;
       padding: 10px;
       font-size: 1rem;
@@ -103,7 +103,7 @@
     }
 
     table th {
-      background-color: #3498db;
+      background-color: rgb(58, 1, 1);
       color: white;
       font-size: 1.1rem;
     }
@@ -206,7 +206,7 @@
             table.innerHTML += `
               <tr data-pid="${p.pid}">
                 <td>${p.pid}</td>
-                <td><input value="${p.pname}" onchange="updateField(${p.pid}, 'pname', this.value)"></td>
+                <td><input value="${p.pname}" onchange="updateField(${p.pid}, 'product_name', this.value)"></td>
                 <td><input value="${p.description}" onchange="updateField(${p.pid}, 'description', this.value)"></td>
                 <td><input type="number" value="${p.quantity}" onchange="updateField(${p.pid}, 'quantity', this.value)"></td>
                 <td><input type="number" value="${p.price}" onchange="updateField(${p.pid}, 'price', this.value)"></td>
@@ -227,7 +227,7 @@
     }
 
     async function addProduct() {
-      const pname = document.getElementById('pname').value;
+      const pname = document.getElementById('product_name').value;
       const description = document.getElementById('description').value;
       const quantity = document.getElementById('quantity').value;
       const price = document.getElementById('price').value;
@@ -244,7 +244,7 @@
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify({ pname, description, quantity, price })
+          body: JSON.stringify({ product_name, description, quantity, price })
         });
 
         const data = await res.json();
