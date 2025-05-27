@@ -204,15 +204,15 @@
         if (Array.isArray(data) && data.length > 0) {
           data.forEach(p => {
             table.innerHTML += `
-              <tr data-pid="${p.pid}">
-                <td>${p.pid}</td>
-                <td><input value="${p.product_name}" onchange="updateField(${p.pid}, 'product_name', this.value)"></td>
-                <td><input value="${p.description}" onchange="updateField(${p.pid}, 'description', this.value)"></td>
-                <td><input type="number" value="${p.quantity}" onchange="updateField(${p.pid}, 'quantity', this.value)"></td>
-                <td><input type="number" value="${p.price}" onchange="updateField(${p.pid}, 'price', this.value)"></td>
+             <tr data-pid="${p.product_id}">
+                <td>${p.product_id}</td>
+                <td><input value="${p.product_name}" onchange="updateField(${p.product_id}, 'product_name', this.value)"></td>
+                <td><input value="${p.description}" onchange="updateField(${p.product_id}, 'description', this.value)"></td>
+                <td><input type="number" value="${p.quantity}" onchange="updateField(${p.product_id}, 'quantity', this.value)"></td>
+                <td><input type="number" value="${p.price}" onchange="updateField(${p.product_id}, 'price', this.value)"></td>
                 <td>
-                  <button class="delete" onclick="deleteProduct(${p.pid})">Delete</button>
-                  <button class="update" onclick="updateProduct(${p.pid})">Update</button>
+                  <button class="delete" onclick="deleteProduct(${p.product_id})">Delete</button>
+                  <button class="update" onclick="updateProduct(${p.product_id})">Update</button>
                 </td>
               </tr>
             `;
@@ -239,7 +239,7 @@
 
       try {
         const res = await fetch(API_BASE, {
-          method: 'GET',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -258,7 +258,7 @@
 
     async function deleteProduct(pid) {
       try {
-        const res = await fetch(`${API_BASE}${pid}`, {
+        const res = await fetch(`${API_BASE}/${pid}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`
