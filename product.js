@@ -9,8 +9,10 @@ const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || "uY@9!k3F$zXlqA#P7vRt^dMw0NgJ6LsB";
 const fs = require('fs');
 
-app.use(express.json());
+const path = require("path");
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Create a reusable function to get a database connection
 async function getDBConnection() {
@@ -123,6 +125,7 @@ app.post("/login", async (req, res) => {
     console.error("Login Error:", err);
     res.status(500).json({ error: "Login failed" });
   }
+
 });
 
 // ---------------------------
