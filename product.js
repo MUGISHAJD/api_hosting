@@ -8,6 +8,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || "uY@9!k3F$zXlqA#P7vRt^dMw0NgJ6LsB";
 const fs = require('fs');
+const cors = require('cors');
+app.use(cors());
 
 const path = require("path");
 const SECRET_KEY = 'abefghijklmnopqrstuvwxyz1_234567890jdfyhgtuasjgfdsbfeadbmfjdfbvchjdbv_edhs';
