@@ -10,6 +10,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "uY@9!k3F$zXlqA#P7vRt^dMw0NgJ6LsB";
 const fs = require('fs');
 
 const path = require("path");
+const SECRET_KEY = 'abefghijklmnopqrstuvwxyz1_234567890jdfyhgtuasjgfdsbfeadbmfjdfbvchjdbv_edhs';
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
