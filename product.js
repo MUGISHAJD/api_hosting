@@ -55,7 +55,7 @@ async function getDBConnection() {
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1]; // Format: "Bearer <token>"
+  //const token = authHeader && authHeader.split(" ")[1]; // Format: "Bearer <token>"
 
   if (!token) return res.status(401).json({ error: "Token required" });
 
