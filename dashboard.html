@@ -197,14 +197,16 @@
           }
         });
 
+        if (!res.ok) throw new Error('Failed to fetch products');
         const data = await res.json();
+
         const table = document.getElementById('productTable');
         table.innerHTML = '';
 
         if (Array.isArray(data) && data.length > 0) {
           data.forEach(p => {
             table.innerHTML += `
-             <tr data-pid="${p.product_id}">
+              <tr data-pid="${p.product_id}">
                 <td>${p.product_id}</td>
                 <td><input value="${p.product_name}" onchange="updateField(${p.product_id}, 'product_name', this.value)"></td>
                 <td><input value="${p.description}" onchange="updateField(${p.product_id}, 'description', this.value)"></td>
@@ -283,7 +285,7 @@
       const price = inputs[3].value;
 
       try {
-        const res = await fetch(`${API_BASE}${pid}`, {
+        const res = await fetch(`${API_BASE}/${pid}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -303,7 +305,7 @@
 
     async function updateField(pid, field, value) {
       try {
-        const res = await fetch(`${API_BASE}${pid}`, {
+        const res = await fetch(`${API_BASE}/${pid}`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
